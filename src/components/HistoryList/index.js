@@ -80,7 +80,7 @@ const initialHistoryList = [
 class HistroyList extends Component {
   state = {
     list: initialHistoryList,
-    value: '',
+    searchInput: '',
   }
 
   deleteButtonClicked = id => {
@@ -92,15 +92,16 @@ class HistroyList extends Component {
   onTextChange = event => {
     const a = event.target.value
     const b = a.toLowerCase()
-    this.setState({value: b})
+    this.setState({searchInput: a})
   }
 
   render() {
-    const {list, value} = this.state
+    const {list, searchInput} = this.state
     const newList = list.filter(eachItem => {
       const c = eachItem.title
       const d = c.toLowerCase()
-      if (d.includes(value)) {
+      const e = searchInput.toLowerCase()
+      if (d.includes(e)) {
         return eachItem
       }
       return null
@@ -126,7 +127,7 @@ class HistroyList extends Component {
               type="search"
               placeholder="Search history"
               onChange={this.onTextChange}
-              value={value}
+              value={searchInput}
             />
           </div>
         </div>
